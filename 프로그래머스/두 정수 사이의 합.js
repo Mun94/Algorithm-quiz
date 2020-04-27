@@ -21,7 +21,8 @@ function solution(a, b) {
     {
         for(var i = a; i <= b; i++)
         {
-            answer += i;  
+            answer += i; 
+            answer; 
         }
     }
     else
