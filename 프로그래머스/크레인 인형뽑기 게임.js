@@ -32,8 +32,8 @@ for(let i =0; i<array2.length; i++){
         i=0;
     }
 }    
-console.log(array2)
+
     return answer
 }
 
-console.log(solution(board, moves));
+solution(board, moves);
