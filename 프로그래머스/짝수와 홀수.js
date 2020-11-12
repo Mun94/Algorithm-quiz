@@ -11,10 +11,8 @@ num	return
 4	Even
 */
 
-//음수(-2 짝수, -1 홀수)도 인식 됨, 음수를 걸러내는 필터링 필요
-
 function solution(num){
-    return num >= 0 ? (num%2===0 ? "Even" : "Odd") : null
+    return num%2===0 ? "Even" : "Odd"
 }
 
-console.log(solution(-1));
+console.log(solution(-2));
