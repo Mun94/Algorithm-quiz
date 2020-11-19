@@ -19,17 +19,25 @@ arr	answer
 문제의 예시와 같습니다
 */
 
-function solution(arr)
-{
-    for(let i =0; i<arr.length; i++)
-    {
-        if(arr[i] === arr[i+1])
-        {
-            arr.splice(i,1);
-            i--;
-        }
-    }
-    return arr;
+// function solution(arr)
+// {
+//     for(let i =0; i<arr.length; i++)
+//     {
+//         console.log(arr.length, arr[i], arr[i+1] ,i)
+        
+//         if(arr[i] === arr[i+1])
+//         {
+//             arr.splice(i,1);
+//             i--;
+//         }
+//     }
+//     return arr;
+// }
+
+// console.log(solution([5,4,4,4,3,3])); <---- 결과는 잘 나오는데 효율성 실패
+
+function solution(arr){
+    return arr.filter((val, idx) => val !== arr[idx+1])
 }
-console.log(solution([1,1,3,3,0,1,1]));
-console.log(solution([4,4,4,3,3]));
+
+console.log(solution([4,4,4,1,2]))
