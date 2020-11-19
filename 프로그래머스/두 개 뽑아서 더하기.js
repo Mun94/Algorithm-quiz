@@ -45,3 +45,17 @@ function solution(numbers) {
 const numbers = [5,0,2,7]
 
 console.log(solution(numbers))
+
+///////// 2번 방법
+
+function solution2(number){
+    let result = number.map((a,idx) => number.slice(idx+1, number.length).map((b) => a+b));
+
+    result.pop();
+
+    result = [...new Set(result.join().split(','))];
+
+    return result.map(a => Number(a)).sort((a,b) => a-b)
+}
+
+console.log(solution2([2,1,3,4,1]))
