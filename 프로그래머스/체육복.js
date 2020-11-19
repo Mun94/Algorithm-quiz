@@ -21,32 +21,49 @@ n	lost	reserve	return
 예제 #2
 3번 학생이 2번 학생이나 4번 학생에게 체육복을 빌려주면 학생 4명이 체육수업을 들을 수 있습니다.*/
 
-function solution(n, lost, reserve) {
-    let students = [];
+// function solution(n, lost, reserve) {
+//     let students = [];
 
-    for(let i = 0; i < n; i++){
-        students.push(1);
-    };
+//     for(let i = 0; i < n; i++){
+//         students.push(1);
+//     };
 
-    for(let j = 0; j < lost.length; j++){
-        students.splice(lost[j]-1,1,0);
-    }
+//     for(let j = 0; j < lost.length; j++){
+//         students.splice(lost[j]-1,1,0);
+//     }
 
-    for(let k = 0 ; k < reserve.length; k++){
-       if(students[reserve[k]] === 0 && (students[reserve[k]-2] === 0 || students[reserve[k]-1] === 1)){
-           students.push(1)
-       }
-    }
+//     for(let k = 0 ; k < reserve.length; k++){
+//        if(students[reserve[k]] === 0 && (students[reserve[k]-2] === 0 || students[reserve[k]-1] === 1)){
+//            students.push(1)
+//        }
+//     }
 
-    const result = students.reduce((acc, e1) => {
-        return acc+e1;
-    },0)
+//     const result = students.reduce((acc, e1) => {
+//         return acc+e1;
+//     },0)
 
-    return result 
+//     return result 
+// }
+// //[1,2,3,4,5]
+// const n = 5;
+// const lost = [2,4]; 
+// const reserve = [1,3,5]; // return 5
+
+// console.log(solution(n, lost,reserve)); <------- 정확성 실패
+
+function solution(n, lost, reserve){
+    let array = '1'.repeat(n).split('');
+
+    lost.sort((a,b) => a-b);
+    reserve.sort((a,b) => a-b);
+
+    lost.map(a => array[a-1] = 0);
+    reserve.map((a,idx) => lost.map(b => b === a ? (reserve[idx] = -1, array[a-1]='1') : null));
+    reserve.map(a => (array[a-2] === 0 || array[a] === 0) ? array.push('1') : null);
+
+    let result = array.filter(a => a !== 0);
+    
+    return result.length > n ? n : result.length; 
 }
-//[1,2,3,4,5]
-const n = 5;
-const lost = [2,4]; 
-const reserve = [1,3,5]; // return 5
 
-console.log(solution(n, lost,reserve));
+console.log(solution(10, [2,3,4,5], [4,2,6]))
