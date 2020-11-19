@@ -86,3 +86,15 @@ function solution3(strings, n) {
 }
 
 console.log(solution3(strings, n));
+
+//// 4번 방법
+function solution4(strings, n){
+    return strings.sort((a,b) => {
+        if(a[n] === b[n]){
+            return a < b ? -1 : b < a ? 1: 0 
+        }
+        return a[n] < b[n] ? -1 : b[n] < a[n] ? 1 : 0
+    })
+}
+
+console.log(solution4(strings, n))
