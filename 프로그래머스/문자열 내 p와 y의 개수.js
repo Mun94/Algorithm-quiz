@@ -21,7 +21,7 @@ Pyy	false
 
 function answer(s) {
     let ppp = 0;
-let yyy = 0;
+    let yyy = 0;
   for(let i=0; i < s.length; i++)
     {
         if(s[i] === 'p' || s[i] === 'P')
@@ -39,3 +39,32 @@ let yyy = 0;
 console.log(answer('pPoooyY'));
 console.log(answer('Pyy'));
 console.log(answer(''));
+
+////////// 2번 방법
+
+function solution(s){
+    const fun = (x) => {
+        return s.toUpperCase().split('').filter(a => a === x).length
+    }
+    return (fun('Y') === fun('P')) && s.length > 0 ? true : false
+}
+
+console.log(solution('pPoooyY'));
+console.log(solution('Pyy'));
+console.log(solution(''));
+
+////////// 3번 방법
+
+function solution2(s){
+    return s.toUpperCase().split('Y').length === s.toUpperCase().split('P').length
+}
+
+console.log(solution2('pPoooyY'));
+
+////////// 4번 방법
+
+function solution3(s){
+    return s.match(/p/ig).length === s.match(/y/ig).length
+}
+
+console.log(solution3('pPoooYy'));
