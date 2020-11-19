@@ -38,3 +38,20 @@ function solution(a, b) {
 console.log(solution(3,3));
 console.log(solution(3,5));
 console.log(solution(5,3));
+
+/////// 2번 방법
+
+function solution2(n,m){
+    let re = 0;    
+
+    const max = Math.max(n,m);
+    const min = Math.min(n,m);
+
+    for(let i = min; i <= max; i++){
+      re += i;
+    }
+
+    return re 
+}
+
+console.log(solution2(5,3))
