@@ -54,9 +54,6 @@ n	lost	reserve	return
 function solution(n, lost, reserve){
     let array = '1'.repeat(n).split('');
 
-    lost.sort((a,b) => a-b);
-    reserve.sort((a,b) => a-b);
-
     lost.map(a => array[a-1] = 0);
     reserve.map((a,idx) => lost.map(b => b === a ? (reserve[idx] = -1, array[a-1]='1') : null));
     reserve.map(a => (array[a-2] === 0 || array[a] === 0) ? array.push('1') : null);
