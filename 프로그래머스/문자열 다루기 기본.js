@@ -10,22 +10,32 @@ a234	false
 1234	true
 */
 
-const s = "0000"
+// const s = "0000"
 
-function solution(s) {
-    let answer = null;
-    const fil = Number(s);
+// function solution(s) {
+//     let answer = null;
+//     const fil = Number(s);
 
-    if((s.length === 4 || s.length === 8) && (s.indexOf('.') && s.indexOf(' '))===-1){
-        if(fil || fil === 0){
-            answer = true;
-        }else{
-            answer = false;
-        }
-    }else{
-        answer = false;
-    }
-    return answer;
+//     if((s.length === 4 || s.length === 8) && (s.indexOf('.') && s.indexOf(' '))===-1){
+//         if(fil || fil === 0){
+//             answer = true;
+//         }else{
+//             answer = false;
+//         }
+//     }else{
+//         answer = false;
+//     }
+//     return answer;
+// }
+
+// console.log(solution(s)); <------- 테스트 6, 11번 실패
+
+////// 2번 방법
+
+function solution2(s){
+    const re = String(Math.abs(s));
+    
+    return ((re.length === 4 && re.indexOf(' ')===-1) || (re.length === 6&& re.indexOf(' ')===-1)) && Number(re) % 1 === 0 ? true : false  
 }
 
-console.log(solution(s));
+console.log(solution2('111'));
