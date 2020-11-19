@@ -24,7 +24,7 @@ function solution(a,b) {
 
 // 2번 방법
 function solution2(a, b) {
-    return a.reduce((acc, _, i) => acc += a[i] * b[i], 0);
+    return a.reduce((acc,_,idx, src) => acc += src[idx] * b[idx], 0);
 };
 
 console.log(solution2([1,2,3,4], [-3,-1,0,2]));
