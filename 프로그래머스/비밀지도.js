@@ -33,6 +33,32 @@ arr2	[27 ,56, 19, 14, 14, 10]
 출력	["######", "### #", "## ##", " #### ", " #####", "### # "]
 */
 
+const addZero = (n, s) => {
+    return '0'.repeat(n - s.length) + s;
+}
+
+function solution2(n, arr1, arr2) {
+    return arr1.map((v, i) => addZero(n, (v | arr2[i]).toString(2)).replace(/1|0/g, a => +a ? '#' : ' '));
+}
+
+console.log(solution2(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]))
+
+///////////// 2번 방법
+
+function solution2(n, arr1, arr2){
+    return arr1.map((a,index) => Number(a.toString(2)) + Number(arr2[index].toString(2))).map(b => {
+        if(`${b}`.length < n){
+            return '0'.repeat(n-`${b}`.length)+`${b}`
+        }else{
+            return `${b}`
+        }
+    }).map((c) =>  c.split('').map(d => d > 0 && '#' || ' ')).map(e => e.join(''));
+}
+
+console.log(solution2(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]));
+
+/////////// 3번 방법 <----- 엄청 비효율적인 코드 toString_2함수 필요 없음
+
 function toString_2(arr,n){
     return arr.map((a) => {
         if(a.toString(2).length<n){
@@ -43,7 +69,7 @@ function toString_2(arr,n){
    });
 }
 
-function solution(n, arr1, arr2){
+function solution3(n, arr1, arr2){
     return toString_2(arr1,n).map((a,index) => Number(a)+Number(toString_2(arr2,n)[index])).map(b => {
         if(`${b}`.length < n){
             return '0'.repeat(n-`${b}`.length)+`${b}`
@@ -53,16 +79,4 @@ function solution(n, arr1, arr2){
     }).map((c) =>  c.split('').map(d => d>0 && '#' || ' ')).map(e => e.join(''));
 }
 
-console.log(solution(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]))
-
-///////// 2번 방법
-
-const addZero = (n, s) => {
-    return '0'.repeat(n - s.length) + s;
-}
-
-function solution2(n, arr1, arr2) {
-    return arr1.map((v, i) => addZero(n, (v | arr2[i]).toString(2)).replace(/1|0/g, a => +a ? '#' : ' '));
-}
-
-console.log(solution2(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]))
+console.log(solution3(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10])) 
