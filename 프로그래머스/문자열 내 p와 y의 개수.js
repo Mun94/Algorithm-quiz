@@ -56,10 +56,11 @@ console.log(solution(''));
 ////////// 3번 방법
 
 function solution2(s){
+    console.log(s.toUpperCase().split('Y'), s.toUpperCase().split('P'))
     return s.toUpperCase().split('Y').length === s.toUpperCase().split('P').length
 }
 
-console.log(solution2('pPoooyY'));
+console.log('s',solution2('YypypaYSypbbsppyp'));
 
 ////////// 4번 방법
 
