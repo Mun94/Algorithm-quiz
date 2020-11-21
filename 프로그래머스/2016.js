@@ -25,68 +25,70 @@ a	b	result
 12-31
 */
 
-const a = 5;
-const b = 24;
+// const getDayName = (month,day) => {
+//     const month_31 = [5,7,8,10,12];
+//     const month_30 = [4,6,9,11];
+//     const day_all = [31,29,31,30,31,30,31,31,30,31,30,31];
+//     let day_plus = null;
 
-const getDayName = (month,day) => {
-    const month_31 = [5,7,8,10,12];
-    const month_30 = [4,6,9,11];
-    const day_all = [31,29,31,30,31,30,31,31,30,31,30,31];
-    let day_plus = null;
+//     const sum = (month, day_plus, day_all) => {
+//         for(let i=0; i < month-1; i++){
+//              day_plus += day_all[i]
+//         }
+//         return day_plus += day;
+//     }
 
-    const sum = (month, day_plus, day_all) => {
-        for(let i=0; i < month-1; i++){
-             day_plus += day_all[i]
-        }
-        return day_plus += day;
-    }
+//     if(month === 1 && day <= 31){
+//         return day_plus = day;
+//     }
+//     else if(month === 2 && day <= 29 || month === 3 && day <= 31){
+//         return sum(month, day_plus, day_all);
+//     }
+//     else if(month_31.indexOf(month-1) > -1 && day <= 30 && month !== 13){
+//         return sum(month, day_plus, day_all);
+//     }
+//     else if(month_30.indexOf(month-1) > -1 && day <= 31 ){
+//         return sum(month, day_plus, day_all);
+//     }else{
+//         null;
+//     }
 
-    if(month === 1 && day <= 31){
-        return day_plus = day;
-    }
-    else if(month === 2 && day <= 29 || month === 3 && day <= 31){
-        return sum(month, day_plus, day_all);
-    }
-    else if(month_31.indexOf(month-1) > -1 && day <= 30 && month !== 13){
-        return sum(month, day_plus, day_all);
-    }
-    else if(month_30.indexOf(month-1) > -1 && day <= 31 ){
-        return sum(month, day_plus, day_all);
-    }else{
-        null;
-    }
+//     return day_plus;
+// }
 
-    return day_plus;
-}
+// const ResultFuc = (a,b) => {
+//     const DayOfTheWeek = ['THU','FRI','SAT','SUN','MON','TUE','WED'];
+//     let result = null;
+//     let ResultDay = getDayName(month=a, day=b);
 
-const ResultFuc = () => {
-    const DayOfTheWeek = ['THU','FRI','SAT','SUN','MON','TUE','WED'];
-    let result = null;
-    let ResultDay = getDayName(month=a, day=b);
+//     if(ResultDay !== null){
+//         for(let i = 0; i < 7; i++){
+//         if(ResultDay % 7 === i){
+//            return result = DayOfTheWeek[i];
+//             }
+//         }
+//     }else{
+//         null;
+//     }
 
-    if(ResultDay !== null){
-        for(let i = 0; i < 7; i++){
-        if(ResultDay % 7 === i){
-           return result = DayOfTheWeek[i];
-            }
-        }
-    }else{
-        null;
-    }
+//     return result;
+// }
+// console.log(ResultFuc(5,24)) <--------테스트 7,8 실패
 
-    return result;
-}
-console.log(ResultFuc())
 
-/*
-function solution1(a, b) {
+function solution(a, b) {
     var answer = '';
     const date = new Date(`2016,${a},${b}`);
     let day= (date+"").split(' ')[0];
      answer = day.toUpperCase();
     return answer;
 }
-console.log(solution1(a,b)) 
+console.log(solution(a,b)) 
 
-<--- 다른 방법 이것도 런타임 에러 
-*/
+///////// 2번 방법
+
+function solution2(a, b) {
+    return ['SUN','MON','TUE','WED','THU','FRI','SAT'][new Date(`2016-${a}-${b}`).getDay()];
+}
+
+console.log(solution2(5,24)) 
