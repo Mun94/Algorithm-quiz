@@ -18,8 +18,8 @@ function solution(s) {
     let array = [];
     const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
 
-    const split = s.replace(reg,'').split(' ')
-
+    const split = s.replace(reg,'').split(' ');
+    
     for(let i = 0; i < split.length; i++){
         for(let j = 0; j<split[i].length; j++){
             if(j===0 || j%2===0){
@@ -34,11 +34,12 @@ function solution(s) {
 
     return array.join(' ');
 }
+console.log(solution(" tRy hello world"));
 
 // 2번 풀이(다른 사람의 풀이)
 function toWeirdCase(s){
-    return s.toUpperCase().replace(/(\w)(\w)/g, function(a){return a[0].toUpperCase()+a[1].toLowerCase();})
+    return s.toUpperCase().replace(/(\w)(\w)/g, function(a){return a[0]+a[1].toLowerCase();})
   }
 // (\w)(\w)는 연속된 두 문자라는 뜻
 
-console.log(solution(" tRy hello world"));
+console.log(toWeirdCase(" tRy hello world"));
