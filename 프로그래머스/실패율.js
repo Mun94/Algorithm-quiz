@@ -50,8 +50,10 @@ function solution(n, stages){
     let array = []
     for(let i =1; i<=n; i++){
         if(stages.some(a => a===i)){
-            array.push({first:i, second:stages.filter(b => b === i).length/val})
-            val -= stages.filter(b => b === i).length
+            let filter = stages.filter(b => b === i).length;
+            
+            array.push({first:i, second:filter/val})
+            val -= filter
         }else{
             array.push({first:i, second:0})
         }
