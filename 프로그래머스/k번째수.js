@@ -41,3 +41,11 @@ function solution(array, commands) {
 var array = [1,5,2,6,3,7,4];
 var commands = [[2,5,3], [4,4,1], [1,7,3]]; // i,j,k
 console.log(solution(array, commands));
+
+/////// 2번 방법
+
+function solution2(array, commands){
+    return commands.map((a) => array.slice(a[0]-1, a[1]).sort((a,b) => a-b)[a[2]-1])
+}
+
+console.log(solution2([1, 5, 2, 6, 3, 7, 4], [[2, 5, 3], [4, 4, 1], [1, 7, 3]]))
