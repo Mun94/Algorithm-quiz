@@ -38,3 +38,18 @@ const arr = [3,2,65,2,1,3,4,2,35,2];
 const divisor = 1;
 
 console.log(solution(arr, divisor));
+
+//////////////// 2번 방법
+
+function solution2(arr, divisor) {
+    var answer = [];
+
+    answer = arr.filter(a => a % divisor === 0);
+
+    return answer.length  === 0 ? [-1] : answer.sort((a,b) => a-b);
+}
+
+const arr = [3,2];
+const divisor = 10;
+
+console.log(solution2(arr, divisor));

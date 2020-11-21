@@ -83,7 +83,7 @@ function solution(a, b) {
      answer = day.toUpperCase();
     return answer;
 }
-console.log(solution(a,b)) 
+console.log(solution(5,24)) 
 
 ///////// 2번 방법
 
