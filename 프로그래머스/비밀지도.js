@@ -37,11 +37,11 @@ const addZero = (n, s) => {
     return '0'.repeat(n - s.length) + s;
 }
 
-function solution2(n, arr1, arr2) {
-    return arr1.map((v, i) => addZero(n, (v | arr2[i]).toString(2)).replace(/1|0/g, a => +a ? '#' : ' '));
+function solution(n, arr1, arr2) {
+    return arr1.map((v, i) => addZero(n, (v | arr2[i]).toString(2)).replace(/[10]/g, a => +a ? '#' : ' '));
 }
 
-console.log(solution2(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]))
+console.log(solution(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]))
 
 ///////////// 2번 방법
 
@@ -52,7 +52,7 @@ function solution2(n, arr1, arr2){
         }else{
             return `${b}`
         }
-    }).map((c) =>  c.split('').map(d => d > 0 && '#' || ' ')).map(e => e.join(''));
+    }).map((c) =>  c.split('').map(d => d>0 && '#' || ' ')).map(e => e.join(''));
 }
 
 console.log(solution2(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]));
