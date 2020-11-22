@@ -29,35 +29,24 @@ priorities	location	return
 6개의 문서(A, B, C, D, E, F)가 인쇄 대기목록에 있고 중요도가 1 1 9 1 1 1 이므로 C D E F A B 순으로 인쇄합니다.
 */
 
-function solution(priorities, location) {
-    let answer = 0;
-    let array = [];
-   for(let i =0; priorities.length>i; i++){
-    if(i === priorities.indexOf(priorities[location],location)){
-        array.push({bol:true, val:priorities[i]})
-    }else{
-        array.push({bol:false, val:priorities[i]})
-    }
-   }
-    for(let i =0; priorities.length>i; i++) {  
-        let first = array.shift(); 
-        if (array.some((v) => v.val > first.val)) {
-            array.push(first);       
-        }else{
-            array.unshift(first);
-            break;
-        }  
-    }
-    array.sort((a,b) => {if(a.val>b.val) {
-        return -1
-    }});
-    console.log(array);
-    const array2= array.map(b=>b.bol === true);
-    answer=array2.indexOf(true)+1;
-    return answer;
-}
- 
-let priorities = [1,1,9,1,1,1];
-let location = 0;
+let priorities = [1,1,1,3,2,3,1,1,1,10];
+let location = 6;
 
-console.log( solution(priorities,location) ) ;   
+function solution(priorities, location){
+    let array = priorities.map((a, idx) => ({bol: idx === location, val:a}));
+    let result = 0;
+
+    while(1){
+        let shift = array.shift();
+        if(array.some(a => a.val > shift.val)){
+            array.push(shift);
+        }else{
+            result++;
+            if(shift.bol) break;
+        }
+    }
+    return result;
+}
+
+console.log(solution(priorities, location));
+
