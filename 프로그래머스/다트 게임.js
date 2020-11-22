@@ -41,25 +41,48 @@ Single(S), Double(D), Triple(T)은 점수마다 하나씩 존재한다.
 7	    1D2S3T*	    59	    1^2 + 2^1 * 2 + 3^3 * 2
 */
 
-function solution(dartResult){
-    let result = dartResult.split('');
-    let sum = 0;
-    let sta = 1;
 
-    for(let i =0; i<dartResult.length; i++){
-        if(result.indexOf('S') > 1){
-            sum += Math.pow(Number(result[result.indexOf('S')-1]), 1)* sta;
-            result.splice(0,result.indexOf('S')+1) 
-        }else if(result.indexOf('D') > -1){
-            sum += Math.pow(Number(result[result.indexOf('D')-1]), 2)* sta;
-            result.splice(0,result.indexOf('D')+1) 
-        }else if(result.indexOf('T') > -1){
-            sum += Math.pow(Number(result[result.indexOf('T')-1]), 3)* sta;
-            result.splice(0,result.indexOf('T')+1) 
-        }
+
+function sum(x, dartResult, i, val, result, str, ach){
+    let pow = x === 'S' ? 1 : x === 'D' ? 2 : 3;
+    let replace = Number(result.join().split(x)[0].replace(/[,*#]/g, ''));
+
+    if(dartResult[i+1] === '*' && (dartResult[i+4] === '*' || (dartResult[i+2] === '1' && dartResult[i+3] === '0' && dartResult[i+5] === '*'))){
+        str = 4;
+    }else if(dartResult[i+1] === '*' || dartResult[i+3] === '*' || dartResult[i+4] === '*' || (dartResult[i+2]==='1' && dartResult[i+3]==='0' && dartResult[i+5] === '*')){
+        str = 2;
     }
+    if(dartResult[i+1] === '#'){
+        ach = -1;
+    }
+    
+    val.push(Math.pow(replace >= 10 ? 10 : replace, pow) * str * ach);
 
-    return sum
+    if(dartResult[i-1]==='0' && dartResult[i-2] === '1'){
+        result.splice(result.indexOf(x)-2,3);
+    }else{
+    result.splice(result.indexOf(x)-1,2);
+    }
 }
 
-console.log(solution('1S2D*3T'))
+function solution(dartResult){
+    let result = dartResult.split('');
+    let val = [];
+
+    for(let i =0; i < dartResult.length; i++){
+        let str = 1;
+        let ach = 1;
+
+        if(result.indexOf('S') > -1 && dartResult[i] === 'S'){
+            sum('S',dartResult, i, val, result, str, ach);
+        }else if(result.indexOf('D') > -1 && dartResult[i] === 'D'){
+            sum('D',dartResult, i, val, result, str, ach);
+        }else if(result.indexOf('T') > -1 && dartResult[i] === 'T'){
+            sum('T',dartResult, i, val, result, str, ach);
+        }
+}
+
+    return val.reduce((a,b) => a+b);
+}   
+
+console.log(solution('10D*10D*10D'))
