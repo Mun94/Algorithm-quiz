@@ -73,11 +73,11 @@ function solution(dartResult){
         let str = 1;
         let ach = 1;
 
-        if(result.indexOf('S') > -1 && dartResult[i] === 'S'){
+        if(dartResult[i] === 'S'){
             sum('S',dartResult, i, val, result, str, ach);
-        }else if(result.indexOf('D') > -1 && dartResult[i] === 'D'){
+        }else if(dartResult[i] === 'D'){
             sum('D',dartResult, i, val, result, str, ach);
-        }else if(result.indexOf('T') > -1 && dartResult[i] === 'T'){
+        }else if(dartResult[i] === 'T'){
             sum('T',dartResult, i, val, result, str, ach);
         }
 }
