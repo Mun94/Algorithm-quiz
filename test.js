@@ -8,7 +8,7 @@
 
 // const array_reset = (menOrWomen,second,third) => {
 //     for(let i=0; i<third; i++){
-//         let a = second === true ? men[Math.floor(Math.random()*men.length)] : women[Math.floor(Math.random()*women.length)] 
+//         let a = second === true ? men[Math.floor(Math.random()*men.length)] : women[Math.floor(Math.random()*women.length)]
 //         menOrWomen.push(a);
 //         if(menOrWomen.filter(b => b===a).length > 1){
 //             menOrWomen.splice(i,third)
@@ -29,7 +29,7 @@
 
 //    const new_array = new Array(men_array.join(), women_array.join());
 
-//     return new_array 
+//     return new_array
 // }
 
 // console.log(solution(m,w)) <--- 너무 어렵게 생각하고 풀이 했던것 같음
@@ -37,22 +37,22 @@
 const m = 9;
 const w = 3;
 
-function solution(m,w){
-    let men = 0;
-    let women = 0;
-    for(let i=1; i<m; i++){
-        men += i;
-    }
+function solution(m, w) {
+  let men = 0;
+  let women = 0;
+  for (let i = 1; i < m; i++) {
+    men += i;
+  }
 
-    men = men*w;
+  men = men * w;
 
-    for(let i=1; i<w; i++){
-        women += i;
-    }
+  for (let i = 1; i < w; i++) {
+    women += i;
+  }
 
-    women = women*m;
+  women = women * m;
 
-    return men+women;
+  return men + women;
 }
 
-console.log(solution(m,w))
+console.log(solution(m, w));
