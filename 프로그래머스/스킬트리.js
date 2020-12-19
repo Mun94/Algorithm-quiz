@@ -34,14 +34,19 @@ function solution(skill = skill.toUpperCase(), skill_trees) {
   });
 
   for (let i = 0; i < order.length; i++) {
-    if (
-      (order[i][0] !== -1 &&
-        order[i][[...new Set(order[i])].indexOf(-1) + 1] === undefined) ||
-      (order[i][0] !== -1 &&
-        order[i][[...new Set(order[i])].indexOf(-1) + 1] === -1) ||
-      order[i].indexOf(-1) === -1
-    ) {
-      console.log(order[i]);
+    console.log(order[i]);
+    if (order[i].filter((a) => a === -1).length === order[i].length) {
+      result++;
+    }
+
+    function if_(insert) {
+      return (
+        order[i][0] !== -1 &&
+        order[i][[...new Set(order[i])].indexOf(-1) + 1] === insert
+      );
+    }
+
+    if (if_(undefined) || if_(-1) || order[i].indexOf(-1) === -1) {
       let array = order[i].filter((f) => f !== -1);
       let array1 = order[i].filter((f) => f !== -1);
 
@@ -58,20 +63,4 @@ function solution(skill = skill.toUpperCase(), skill_trees) {
   return result;
 }
 
-console.log("1번", solution("CBBD", ["BACDE", "CBADF", "AECB", "BDA"]));
-console.log(
-  "2번",
-  solution("CBDK", [
-    "CB",
-    "CXYB",
-    "BD",
-    "AECD",
-    "ABC",
-    "AEX",
-    "CDB",
-    "CBKD",
-    "IJCB",
-    "LMDK",
-  ])
-);
-console.log("3번", solution("ABC", ["X", "OP", "STU"]));
+console.log("1번", solution("CBBD", ["BBCD", "CBBBD"]));
