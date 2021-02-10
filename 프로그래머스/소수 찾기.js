@@ -25,7 +25,7 @@
 // function solution(n) {
 //     var answer = 0;
 //     let array = [];
-    
+
 //     if(2 <= n && n <= 1000000){
 //     for(let i = 1; i <= n; i++){
 //        for(let j = 1; j <= n; j++){
@@ -42,7 +42,7 @@
 //     }
 
 //     return answer;
-// } 
+// }
 
 // // 2번 방법 테스트 10,11,12 실패 및 효율성 실패
 
@@ -97,26 +97,46 @@
 //         }
 //         if(count === 2) result++
 //     }
-    
+
 //     return result
 // }
 
 // console.log(solution2(5))
 
-function solution(n){
-    let array = [];
-    for(let i = 1; i <= n; i++) array.push(i)
+function solution(n) {
+  let array = [];
+  for (let i = 1; i <= n; i++) array.push(i);
 
-    for(let i = 1; i <= Math.sqrt(n); i++){
-        let num = array[i];
-        if(num){
-            for(let j = num * num; j <= n; j += num){
-                array[j-1] = 0;
-            }
-     }
+  for (let i = 1; i <= Math.sqrt(n); i++) {
+    let num = array[i];
+    if (num) {
+      for (let j = num * num; j <= n; j += num) {
+        array[j - 1] = 0;
+      }
     }
+  }
 
-    return array.filter(a => a).length-1;
+  return array.filter((a) => a).length - 1;
 }
 
-console.log(solution(10))
+console.log(solution(10));
+
+//////////// 2번 방법
+
+const n = 10;
+
+const solution2 = (n) => {
+  let array = [...Array(n)].map((v, i) => i + 1);
+
+  for (let i = 1; i <= Math.sqrt(n); i++) {
+    let num = array[i];
+    if (num) {
+      for (let i = num * num; i <= n; i += num) {
+        array[i - 1] = 0;
+      }
+    }
+  }
+  return array.filter((a) => a).length - 1;
+};
+
+console.log(solution2(n));
