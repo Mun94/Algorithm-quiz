@@ -30,12 +30,36 @@ a234	false
 
 // console.log(solution(s)); <------- 테스트 6, 11번 실패
 
-////// 2번 방법
+/////// 2번 방법
 
-function solution2(s){
-    const re = String(Math.abs(s));
-    
-    return ((re.length === 4 && re.indexOf(' ')===-1) || (re.length === 6&& re.indexOf(' ')===-1)) && Number(re) % 1 === 0 ? true : false  
+function solution2(s) {
+  const re = String(Math.abs(s));
+
+  return ((re.length === 4 && re.indexOf(" ") === -1) ||
+    (re.length === 6 && re.indexOf(" ") === -1)) &&
+    Number(re) % 1 === 0
+    ? true
+    : false;
 }
 
-console.log(solution2('111'));
+console.log(solution2("111"));
+
+/////// 3번 방법
+
+const solution = (s) => {
+  const b = Math.abs(s).toString().length;
+  if (s.includes(" ") || s.includes(".")) {
+    return false;
+  }
+  if (b === 4 || b === 6) {
+    if (Number(s)) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
+
+console.log(solution(s));
