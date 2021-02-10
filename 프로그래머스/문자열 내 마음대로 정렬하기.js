@@ -19,36 +19,59 @@ sun, bed, car의 1번째 인덱스 값은 각각 u, e, a 입니다. 이를 기�
 입출력 예 2
 abce와 abcd, cdx의 2번째 인덱스 값은 c, c, x입니다. 따라서 정렬 후에는 cdx가 가장 뒤에 위치합니다. abce와 abcd는 사전순으로 정렬하면 abcd가 우선하므로, 답은 [abcd, abce, cdx] 입니다. 
 */
-const strings = ['abcf', 'abcd', 'cdx','aacd','aaad'];
+
+const strings = ["abce", "abcd", "cdx"];
+const n = 2;
+
+const func = (strings, n) => {
+  return strings.sort((a, b) => {
+    if (a[n] > b[n]) return 1;
+    else if (a[n] < b[n]) return -1;
+    else {
+      if (a > b) return 1;
+      else return -1;
+    }
+  });
+};
+
+console.log(func(strings, n));
+
+// -------------- 1번 방법
+const strings = ["abcf", "abcd", "cdx", "aacd", "aaad"];
 const n = 2;
 
 function solution(strings, n) {
-    var answer = [];
-    let answer1 = []; 
-    let result = [];
+  var answer = [];
+  let answer1 = [];
+  let result = [];
 
-    if(strings.some(s => s.length > n)){
-    for(let i = 0; i < strings.length; i++){
-        let input = {id:i, str:strings[i][n], origin:strings[i]}
-        if(strings.filter(s => s[n] === strings[i][n]).length === 1){
-            answer.push(input)
-        }else{
-            answer1.push(input)
-        }
+  if (strings.some((s) => s.length > n)) {
+    for (let i = 0; i < strings.length; i++) {
+      let input = { id: i, str: strings[i][n], origin: strings[i] };
+      if (strings.filter((s) => s[n] === strings[i][n]).length === 1) {
+        answer.push(input);
+      } else {
+        answer1.push(input);
+      }
     }
-        answer1.sort((a,b) => {if(a.origin < b.origin){
+    answer1.sort((a, b) => {
+      if (a.origin < b.origin) {
         return -1;
-    }})
+      }
+    });
 
-    const array2 = new Array(...answer, ...answer1).sort((a,b) => {if(a.str < b.str) return -1});
+    const array2 = new Array(...answer, ...answer1).sort((a, b) => {
+      if (a.str < b.str) return -1;
+    });
 
-    for(let i = 0; i < array2.length; i++){
-        result.push(strings[array2[i].id]);
-    }}else{
-        result = null;
+    for (let i = 0; i < array2.length; i++) {
+      result.push(strings[array2[i].id]);
     }
+  } else {
+    result = null;
+  }
 
-    return result;
+  return result;
 }
 
 console.log(solution(strings, n));
@@ -56,16 +79,16 @@ console.log(solution(strings, n));
 // -------------- 2번 방법
 
 function solution2(strings, n) {
-    strings.sort(function(a,b){
-        if(a[n] > b[n]) return 1;
-        if(b[n] > a[n]) return -1;
+  strings.sort(function (a, b) {
+    if (a[n] > b[n]) return 1;
+    if (b[n] > a[n]) return -1;
 
-        if(a > b) return 1;
-        if(b > a) return -1;
+    if (a > b) return 1;
+    if (b > a) return -1;
 
-        return 0;
-    });
-    return strings;
+    return 0;
+  });
+  return strings;
 }
 
 console.log(solution2(strings, n));
@@ -73,28 +96,28 @@ console.log(solution2(strings, n));
 // -------------- 3번 방법
 
 function solution3(strings, n) {
-    return strings.sort((a, b) => {
-        const chr1 = a.charAt(n);
-        const chr2 = b.charAt(n);
+  return strings.sort((a, b) => {
+    const chr1 = a.charAt(n);
+    const chr2 = b.charAt(n);
 
-        if (chr1 == chr2) {
-            return (a > b) - (a < b);
-        } else {
-            return (chr1 > chr2) - (chr1 < chr2);
-        }
-    })
+    if (chr1 == chr2) {
+      return (a > b) - (a < b);
+    } else {
+      return (chr1 > chr2) - (chr1 < chr2);
+    }
+  });
 }
 
 console.log(solution3(strings, n));
 
 //// 4번 방법
-function solution4(strings, n){
-    return strings.sort((a,b) => {
-        if(a[n] === b[n]){
-            return a < b ? -1 : b < a ? 1: 0 
-        }
-        return a[n] < b[n] ? -1 : b[n] < a[n] ? 1 : 0
-    })
+function solution4(strings, n) {
+  return strings.sort((a, b) => {
+    if (a[n] === b[n]) {
+      return a < b ? -1 : b < a ? 1 : 0;
+    }
+    return a[n] < b[n] ? -1 : b[n] < a[n] ? 1 : 0;
+  });
 }
 
-console.log(solution4(strings, n))
+console.log(solution4(strings, n));
