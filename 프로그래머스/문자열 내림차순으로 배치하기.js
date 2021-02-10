@@ -11,10 +11,27 @@ Zbcdefg	gfedcbZ
 */
 
 function solution(s) {
-    var answer = s.split('').sort((a,b) => {if(a>b) return -1}).join('');
-    return answer;
+  var answer = s
+    .split("")
+    .sort((a, b) => {
+      if (a > b) return -1;
+    })
+    .join("");
+  return answer;
 }
 
 const s = "Zbcdefg";
+
+console.log(solution(s));
+
+// -------------------- 2번 풀이
+const s = "Zbcdefg";
+
+const solution = (s) => {
+  return s
+    .split("")
+    .sort((a, b) => (a < b) - (a > b))
+    .join("");
+};
 
 console.log(solution(s));
