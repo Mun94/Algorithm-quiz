@@ -12,46 +12,55 @@ a	b	return
 5	3	12 */
 
 function solution(a, b) {
-    var answer = 0;
+  var answer = 0;
 
-    if(a == b) {
-        return a;
+  if (a == b) {
+    return a;
+  } else if (a < b) {
+    for (var i = a; i <= b; i++) {
+      answer += i;
+      answer;
     }
-    else if(a < b)
-    {
-        for(var i = a; i <= b; i++)
-        {
-            answer += i; 
-            answer; 
-        }
+  } else {
+    for (var i = b; i <= a; i++) {
+      answer += i;
     }
-    else
-    {
-        for(var i = b; i <=a; i++)
-        {
-            answer += i;
-        }
-    }
-    return answer;
+  }
+  return answer;
 }
 
-console.log(solution(3,3));
-console.log(solution(3,5));
-console.log(solution(5,3));
+console.log(solution(3, 3));
+console.log(solution(3, 5));
+console.log(solution(5, 3));
 
 /////// 2번 방법
 
-function solution2(n,m){
-    let re = 0;    
+function solution2(n, m) {
+  let re = 0;
 
-    const max = Math.max(n,m);
-    const min = Math.min(n,m);
+  const max = Math.max(n, m);
+  const min = Math.min(n, m);
 
-    for(let i = min; i <= max; i++){
-      re += i;
-    }
+  for (let i = min; i <= max; i++) {
+    re += i;
+  }
 
-    return re 
+  return re;
 }
 
-console.log(solution2(5,3))
+console.log(solution2(5, 3));
+
+///////// 3번 방법
+
+function solution(a, b) {
+  let max = Math.max.apply(null, [a, b]);
+  let min = Math.min.apply(null, [a, b]);
+
+  return Array.from({ length: max - min + 1 }, (_, idx) => {
+    return min + idx;
+  }).reduce((acc, val) => {
+    return (acc += val);
+  }, 0);
+}
+
+console.log(solution(3, 5));

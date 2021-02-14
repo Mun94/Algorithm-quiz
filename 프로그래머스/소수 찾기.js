@@ -131,7 +131,7 @@ const solution2 = (n) => {
   for (let i = 1; i <= Math.sqrt(n); i++) {
     let num = array[i];
     if (num) {
-      for (let i = num * num; i <= n; i += num) {
+      for (let i = num * 2; i <= n; i += num) {
         array[i - 1] = 0;
       }
     }

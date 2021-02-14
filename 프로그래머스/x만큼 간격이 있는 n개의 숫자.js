@@ -12,20 +12,38 @@ x	n	answer
 -4	2	[-4, -8]
 */
 
-function solution(x,n){
-    let array = [];
-    for(let i =1; i<=n; i++){
-        array.push(x*i)
-    }
-    return array
+function solution(x, n) {
+  let array = [];
+  for (let i = 1; i <= n; i++) {
+    array.push(x * i);
+  }
+  return array;
 }
 
-console.log(solution(-4,2))
+console.log(solution(-4, 2));
 
 /////// 2번 방법
 
-function solution2(x,n){
-    return Array(n).fill(x).map((v, i) => v * (i+1))
+function solution2(x, n) {
+  return Array(n)
+    .fill(x)
+    .map((v, i) => v * (i + 1));
 }
 
-console.log(solution2(-4,2))
+console.log(solution2(-4, 2));
+
+////////// 3번 방법
+
+function solution3(x, n) {
+  return [...Array(n)].map((_, idx) => x * (idx + 1));
+}
+
+console.log(solution3(2, 5));
+
+////////// 4번 방법
+
+function solution(x, n) {
+  return Array.from({ length: n }, (_, idx) => x * (idx + 1));
+}
+
+console.log(solution(2, 5));

@@ -11,27 +11,27 @@ phone_number	return
 027778888	'*****8888'
 */
 
-function solution(phone_number){
-    phone_number = phone_number.split('');
+function solution(phone_number) {
+  phone_number = phone_number.split("");
 
-    for(let i =0; i< phone_number.length-4; i++){
-        phone_number[i] = '*';
-    }
+  for (let i = 0; i < phone_number.length - 4; i++) {
+    phone_number[i] = "*";
+  }
 
-    return phone_number.join('');
+  return phone_number.join("");
 }
 
-console.log(solution('027778888'));
+console.log(solution("027778888"));
 
 ////// 2번 방법
 
-function hide_numbers(s){
-    var result = "*".repeat(s.length - 4) + s.slice(-4);
-  
-    return result;
-  }
-  
-console.log("결과 : " + hide_numbers('01033334444'));
+function hide_numbers(s) {
+  var result = "*".repeat(s.length - 4) + s.slice(-4);
+
+  return result;
+}
+
+console.log("결과 : " + hide_numbers("01033334444"));
 
 ////// 3번 방법
 
@@ -39,4 +39,4 @@ function hide_numbers(s) {
   return s.replace(/\d(?=\d{4})/g, "*");
 }
 
-console.log("결과 : " + hide_numbers('01033334444'));
+console.log("결과 : " + hide_numbers("01033334444"));

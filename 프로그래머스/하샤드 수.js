@@ -24,8 +24,15 @@ arr	return
 13의 모든 자릿수의 합은 4입니다. 13은 4로 나누어 떨어지지 않으므로 13은 하샤드 수가 아닙니다.
 */
 
-function solution(arr){
-    return arr % arr.toString().split('').reduce((a,b) => Number(a) + Number(b))===0 ? true : false;
+function solution(arr) {
+  return arr %
+    arr
+      .toString()
+      .split("")
+      .reduce((a, b) => Number(a) + Number(b)) ===
+    0
+    ? true
+    : false;
 }
 
-console.log(solution(11))
+console.log(solution(11));

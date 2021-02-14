@@ -10,21 +10,45 @@ arr1	arr2	return
 [[1],[2]]	[[3],[4]]	[[4],[6]]
 */
 
-function solution(arr1, arr2){
-    for(let i = 0; i<arr1.length; i++){
-        for(let j =0; j<arr1[i].length; j++){
-            arr1[i][j] = arr1[i][j]+arr2[i][j]
-        }
+function solution(arr1, arr2) {
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr1[i].length; j++) {
+      arr1[i][j] = arr1[i][j] + arr2[i][j];
     }
-    return arr1
+  }
+  return arr1;
 }
 
-console.log(solution([[1,2], [2,3]], [[3,4], [5,6]]))
+console.log(
+  solution(
+    [
+      [1, 2],
+      [2, 3],
+    ],
+    [
+      [3, 4],
+      [5, 6],
+    ]
+  )
+);
 
 /////// 2번 방법
 
-function solution2(arr1,arr2){
-    return arr1.map((a,index) => a.map((b, b_index) => b + arr2[index][b_index]))
+function solution2(arr1, arr2) {
+  return arr1.map((a, index) =>
+    a.map((b, b_index) => b + arr2[index][b_index])
+  );
 }
 
-console.log(solution2([[1,2], [2,3]], [[3,4], [5,6]]))
+console.log(
+  solution2(
+    [
+      [1, 2],
+      [2, 3],
+    ],
+    [
+      [3, 4],
+      [5, 6],
+    ]
+  )
+);

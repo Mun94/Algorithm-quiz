@@ -11,14 +11,27 @@ qwer	we
 */
 
 function solution(s) {
-    var answer = '';
-    const result = Math.floor(s.length/2);
+  var answer = "";
+  const result = Math.floor(s.length / 2);
 
-    answer = s.length % 2 === 1 ? s[result] : s[result-1] + s[result]
+  answer = s.length % 2 === 1 ? s[result] : s[result - 1] + s[result];
 
-    return answer;
+  return answer;
 }
 
-const s = 'abcde';
+const s = "abcde";
 
-console.log(solution(s))
+console.log(solution(s));
+
+////////////// 2번 방법
+
+function solution(s) {
+  if (s.length % 2 === 0) {
+    let va = s.length / 2;
+    return s.slice(va - 1, va + 1);
+  } else {
+    return s[Math.floor(s.length / 2)];
+  }
+}
+
+console.log(solution("qwer"));

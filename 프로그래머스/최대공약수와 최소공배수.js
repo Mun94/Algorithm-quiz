@@ -16,51 +16,73 @@ n	m	return
 자연수 2와 5의 최대공약수는 1, 최소공배수는 10이므로 [1, 10]을 리턴해야 합니다.
 */
 
-function n_m_array(v, array){
-    if(0<v && v<=1000000){
-    for(let i = 1; i <= v; i++){
-        if(v%i === 0){
-            array.push(i);
-        }
-    }}else{
-        return null;
+function n_m_array(v, array) {
+  if (0 < v && v <= 1000000) {
+    for (let i = 1; i <= v; i++) {
+      if (v % i === 0) {
+        array.push(i);
+      }
     }
+  } else {
+    return null;
+  }
 }
 
-function solution(n,m){
-    let n_array = [];
-    let m_array = [];
+function solution(n, m) {
+  let n_array = [];
+  let m_array = [];
 
-    n_m_array(n,n_array)
-    n_m_array(m,m_array)
-  
-    for(let i =0; i< n_array.sort((a,b) => b-a).length; i++){
-       if(m_array.some(v => v === n_array[i])){
-                n_array=n_array[i]
-                break;    
-       }
+  n_m_array(n, n_array);
+  n_m_array(m, m_array);
+
+  for (let i = 0; i < n_array.sort((a, b) => b - a).length; i++) {
+    if (m_array.some((v) => v === n_array[i])) {
+      n_array = n_array[i];
+      break;
     }
-    
-    m_array = (Math.max.apply(null, new Array(n,m))/n_array) * Math.min.apply(null,new Array(n,m));
+  }
 
-    return [n_array, m_array];
+  m_array =
+    (Math.max.apply(null, new Array(n, m)) / n_array) *
+    Math.min.apply(null, new Array(n, m));
+
+  return [n_array, m_array];
 }
 
-console.log(solution(60,48)) 
+console.log(solution(60, 48));
 
 ///////// 2번 방법
 
-function solution2(n,m){
-    let max = 0;
-    for(let i =1; i<=n; i++){
-        if(n%i===0 && m%i===0){
-            max=i
-        }
+function solution2(n, m) {
+  let max = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0 && m % i === 0) {
+      max = i;
     }
+  }
 
-    let min = (Math.max.apply(null, new Array(n,m))/max) * Math.min.apply(null,new Array(n,m));
+  let min =
+    (Math.max.apply(null, new Array(n, m)) / max) *
+    Math.min.apply(null, new Array(n, m));
 
-    return [max,min]
+  return [max, min];
 }
 
-console.log(solution2(10,60))
+console.log(solution2(10, 60));
+
+//////////// 3번
+
+function solution(n, m) {
+  let max = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0 && m % i === 0) max = i;
+  }
+
+  let aa = Math.max.apply(null, [n, m]);
+  let bb = Math.min.apply(null, [n, m]);
+
+  let min = (aa / max) * bb;
+  return [max, min];
+}
+
+console.log(solution(2, 5));

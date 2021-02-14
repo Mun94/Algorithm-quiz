@@ -25,43 +25,60 @@ n	result
 626331은 500번을 시도해도 1이 되지 못하므로 -1을 리턴해야합니다.
 */
 
-function solution(n){
-    let v = n;
-    for(let i =1; i<501; i++){
-        if(i<500){
-            if(v%2 === 0){
-                v = v/2
-            }else if(v === 1){
-                v = i-1
-                break;
-            }else{
-                v = (v * 3)+1
-            }
-        }else{
-            v=-1
-        }
+function solution(n) {
+  let v = n;
+  for (let i = 1; i < 501; i++) {
+    if (i < 500) {
+      if (v % 2 === 0) {
+        v = v / 2;
+      } else if (v === 1) {
+        v = i - 1;
+        break;
+      } else {
+        v = v * 3 + 1;
+      }
+    } else {
+      v = -1;
     }
+  }
 
-    return v
+  return v;
 }
 
-console.log(solution(16))
+console.log(solution(16));
 
 /////// 2번 방법
 
-function solution2(n){
-    let v = n;
-    for(let i =0; i<500; i++){
-            if(v%2 === 0){
-                v = v/2;
-            }else if(v === 1){
-                return v = i;
-            }else{
-                v = (v * 3)+1;
-            }
-        }
+function solution2(n) {
+  let v = n;
+  for (let i = 0; i < 500; i++) {
+    if (v % 2 === 0) {
+      v = v / 2;
+    } else if (v === 1) {
+      return (v = i);
+    } else {
+      v = v * 3 + 1;
+    }
+  }
 
-    return -1
+  return -1;
 }
 
-console.log(solution2(626331))
+console.log(solution2(626331));
+
+//////////// 3번 방법
+
+function solution(n) {
+  for (let i = 0; i <= 500; i++) {
+    if (n % 2 === 0) {
+      n = n / 2;
+    } else if (n === 1) {
+      return i;
+    } else {
+      n = n * 3 + 1;
+    }
+  }
+  return -1;
+}
+
+console.log(solution(6));

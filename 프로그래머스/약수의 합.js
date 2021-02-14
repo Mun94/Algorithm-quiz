@@ -17,15 +17,27 @@ n	return
 */
 
 function solution(n) {
-    var answer = 0;
+  var answer = 0;
 
-    for(let i = 1; i<=n; i++){
-        if(n%i===0){
-            answer += i
-        }
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0) {
+      answer += i;
     }
+  }
 
-    return answer;
+  return answer;
 }
 
-console.log(solution(12)) // 28
+console.log(solution(12)); // 28\
+
+/////////// 2번 풀이
+
+function solution(n) {
+  return Array.from({ length: n }, (_, idx) => idx + 1)
+    .filter((q) => n % q === 0)
+    .reduce((acc, val) => {
+      return (acc += val);
+    }, 0);
+}
+
+console.log(solution(12));

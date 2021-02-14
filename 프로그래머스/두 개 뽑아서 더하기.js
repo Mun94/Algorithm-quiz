@@ -30,32 +30,58 @@ numbers	result
 */
 
 function solution(numbers) {
-    let answer = [];
-    
-    for(let i = 0; i < numbers.length; i++){
-        for(let j =i+1; j< numbers.length; j++){
-            answer.push(numbers[i]+numbers[j])
-        }
-    }
-     answer = new Set(answer);
+  let answer = [];
 
-    return [...answer].sort((a,b) => {if(a<b) return -1})
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      answer.push(numbers[i] + numbers[j]);
+    }
+  }
+  answer = new Set(answer);
+
+  return [...answer].sort((a, b) => {
+    if (a < b) return -1;
+  });
 }
 
-const numbers = [5,0,2,7]
+const numbers = [5, 0, 2, 7];
 
-console.log(solution(numbers))
+console.log(solution(numbers));
 
 ///////// 2번 방법
 
-function solution2(number){
-    let result = number.map((a,idx) => number.slice(idx+1, number.length).map((b) => a+b));
+function solution2(number) {
+  let result = number.map((a, idx) =>
+    number.slice(idx + 1, number.length).map((b) => a + b)
+  );
 
-    result.pop();
+  result.pop();
 
-    result = [...new Set(result.join().split(','))];
+  result = [...new Set(result.join().split(","))];
 
-    return result.map(a => Number(a)).sort((a,b) => a-b)
+  return result.map((a) => Number(a)).sort((a, b) => a - b);
 }
 
-console.log(solution2([2,1,3,4,1]))
+console.log(solution2([2, 1, 3, 4, 1]));
+
+/////////// 3번 방법
+
+let arr = [5, 0, 2, 7];
+
+function solution(arr) {
+  return [
+    ...new Set(
+      arr
+        .map((val, idx) =>
+          arr.slice(idx + 1, arr.length).map((val2) => {
+            return val + val2;
+          })
+        )
+        .reduce((acc, b) => {
+          return acc.concat(b);
+        }, [])
+    ),
+  ].sort((a, b) => a - b);
+}
+
+console.log(solution(arr));
