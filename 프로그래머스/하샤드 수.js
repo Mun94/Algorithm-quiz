@@ -36,3 +36,20 @@ function solution(arr) {
 }
 
 console.log(solution(11));
+
+// 2번 풀이
+
+function solution(arr) {
+  return arr %
+    arr
+      .toString()
+      .split("")
+      .reduce((acc, val) => {
+        return (acc += Number(val));
+      }, 0) ===
+    0
+    ? true
+    : false;
+}
+
+console.log(solution(10));

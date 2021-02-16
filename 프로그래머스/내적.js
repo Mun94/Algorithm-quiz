@@ -13,18 +13,27 @@ a	b	result
 [-1,0,1]	[1,0,-1]	-2
 */
 
-// 1번 방법 
-function solution(a,b) {
-    var answer = 0;
-    for(let i = 0; i < a.length; i++){
-        answer += a[i]*b[i]
-    }
-    return answer
-};
+// 1번 방법
+function solution(a, b) {
+  var answer = 0;
+  for (let i = 0; i < a.length; i++) {
+    answer += a[i] * b[i];
+  }
+  return answer;
+}
 
 // 2번 방법
 function solution2(a, b) {
-    return a.reduce((acc,_,idx, src) => acc += src[idx] * b[idx], 0);
-};
+  return a.reduce((acc, _, idx, src) => (acc += src[idx] * b[idx]), 0);
+}
 
-console.log(solution2([1,2,3,4], [-3,-1,0,2]));
+console.log(solution2([1, 2, 3, 4], [-3, -1, 0, 2]));
+
+// 3번 방법
+function solution(a, b) {
+  return a.reduce((acc, val, idx) => {
+    return (acc += val * b[idx]);
+  }, 0);
+}
+
+console.log(solution([1, 2, 3, 4], [-3, -1, 0, 2]));
