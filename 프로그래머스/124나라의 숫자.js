@@ -24,25 +24,37 @@ n	result
 4	11
 */
 
-function solution(n){
-    let array = [];
-   if(n.toString(3).indexOf('0')>-1){
-       while(n>0){
-            if(n%3 === 0){
-               array.unshift('4');
-               n = n/3-1;
-            }else if(n%3-1 === 0){
-                array.unshift('1');
-                n = Math.floor(n/3);
-            }else{
-                array.unshift('2');
-                n = Math.floor(n/3);
-            } 
-       }
-   }else{
-       return n.toString(3)
-   }
-   return array.reduce((a,b) => a+b)
+function solution(n) {
+  let _3 = n.toString(3);
+  let result = [];
+
+  if (_3.includes(0)) {
+    while (n > 0) {
+      if (n % 3 === 0) {
+        result.unshift(4);
+        n = n / 3 - 1;
+      } else if ((n % 3) - 1 === 0) {
+        result.unshift(1);
+        n = Math.floor(n / 3);
+      } else {
+        result.unshift(2);
+        n = Math.floor(n / 3);
+      }
+    }
+  } else {
+    return _3;
+  }
+  return result.join("");
 }
 
-console.log(solution(8))
+console.log(solution(3));
+
+// 2번 풀이
+
+function solution(n) {
+  return n === 0
+    ? ""
+    : solution(parseInt((n - 1) / 3)) + [1, 2, 4][(n - 1) % 3];
+}
+
+console.log(solution(10));

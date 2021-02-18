@@ -86,3 +86,24 @@ function solution(n, m) {
 }
 
 console.log(solution(2, 5));
+
+//////////// 4번
+
+function solution(n, m) {
+  let max = Math.max(n, m);
+  let min = Math.min(n, m);
+  let _1 = 0;
+
+  for (let i = min; i >= 1; i--) {
+    if (max % i === 0 && min % i === 0) {
+      _1 = i;
+      break;
+    }
+  }
+
+  let _2 = (max / _1) * min;
+
+  return [_1, _2];
+}
+
+console.log(solution(3, 12));
