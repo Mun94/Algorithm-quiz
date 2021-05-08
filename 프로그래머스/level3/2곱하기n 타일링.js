@@ -1,3 +1,6 @@
+/*
+원노트 정리 해야함
+*/
 const solution = (n) => {
   let arr = [1, 2];
 

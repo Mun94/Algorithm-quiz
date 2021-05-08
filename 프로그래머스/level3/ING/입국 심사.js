@@ -1,3 +1,6 @@
+/*
+원노트 정리 해야함
+*/
 function solution(n, times) {
   const sortTime = times.sort((a, b) => a - b);
   let min = 0;
