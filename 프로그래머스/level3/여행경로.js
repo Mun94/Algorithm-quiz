@@ -1,4 +1,5 @@
-/*
+/* 
+
 문제 설명
 주어진 항공권을 모두 이용하여 여행경로를 짜려고 합니다. 항상 "ICN" 공항에서 출발합니다.
 
@@ -28,15 +29,15 @@ tickets	return
 const solution = (tickets) => {
   let routes = [];
 
-  const travelroute = (tickets, arrival, route) => {
+  const travelroute = (tickets, start, route) => {
     if (tickets.length === 0) return routes.push(route);
 
-    tickets.map(([departure, destination], i) => {
-      if (departure === arrival) {
+    tickets.map(([departure, arrival], i) => {
+      if (departure === start) {
         const newExtraTicket = tickets.slice();
         newExtraTicket.splice(i, 1);
 
-        travelroute(newExtraTicket, destination, route.concat(destination));
+        travelroute(newExtraTicket, arrival, route.concat(arrival));
       }
     });
   };
