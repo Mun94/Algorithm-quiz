@@ -21,21 +21,20 @@ numbers	target	return
 문제에 나온 예와 같습니다.
 */
 
-const solution = (numbers, target) => {
-  let answer = 0;
+function solution(numbers, target) {
+  let j = 0;
 
-  DFS(0, 0);
-
-  function DFS(x, sum) {
-    if (x < numbers.length) {
-      DFS(x + 1, sum + numbers[x]);
-      DFS(x + 1, sum - numbers[x]);
-    } else if (sum === target) {
-      answer++;
+  sum(0, 0);
+  function sum(i, result) {
+    if (i < numbers.length) {
+      sum(i + 1, result + numbers[i]);
+      sum(i + 1, result - numbers[i]);
+    } else if (result === target) {
+      j++;
     }
   }
 
-  return answer;
-};
+  return j;
+}
 
 console.log(solution([1, 1, 1, 1, 1], 3));
