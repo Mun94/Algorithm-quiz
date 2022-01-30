@@ -25,11 +25,14 @@ const solution = (id_list, report, k) => {
     return receiveCount
 }
 
+
+console.time('performance');
 console.log(solution(
     ["muzi", "frodo", "apeach", "neo"],
     ["muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"],
     2,
 ))
+console.timeEnd('performance');
 
     // reportRecord = {
     //   frodo: [ 'muzi', 'apeach' ],
