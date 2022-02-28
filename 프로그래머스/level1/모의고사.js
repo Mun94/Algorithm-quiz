@@ -29,43 +29,42 @@ answers	return
 모든 사람이 2문제씩을 맞췄습니다.
  */
 
-function solution(answer){
-    const one=[1,2,3,4,5];
-    const two=[2,1,2,3,2];
-    const three=[3,3,1,1,2];
+const sum = ( arr, answers ) => {
+    // for를 이용한 첫 번째 방법
+    // let count = 0;
+    // let j = 0;
 
-    let one_ = 0; 
-    let two_ = 0;
-    let three_ = 0;
+    // for(let i = 0; i < answers.length; i++) {
+    //     if(arr[j] === answers[i]) {
+    //         j++;
+    //         count++;          
+    //     } else if (!arr[j]) {
+    //         i = i - 1;
+    //         j = 0;
+    //     } else {
+    //         j++;
+    //     };
+    // };
 
-    let array = [];
+    // return count;
 
-    for(let i =0; i<answer.length; i++){
-        if(one[i] === answer[i]){
-            one_++;
-        }
-        if(two[i] === answer[i]){
-            two_++;
-        }
-        if(three[i] === answer[i]){
-            three_++;
-        }
-    }
+    // filter를 이용한 두 번째 방법
+    return answers.filter((ans, i) => ans === arr[i % arr.length]).length;
+};
 
-    const count = new Array(one_,two_,three_);
+const solution = answers => {
+    const fir = sum([1, 2, 3, 4, 5], answers);
+    const sec = sum([2, 1, 2, 3, 2, 4, 2, 5], answers);
+    const thi = sum([3, 3, 1, 1, 2, 2, 4, 4, 5, 5], answers);
+    const result = [];
 
-    for(let i=0; i<count.length; i++){
-        if(count.filter(co => co === count[i]).length === count.length){
-            array.push(i+1);
-        } 
-        else if(count[i]===Math.max.apply(null, count)){
-            array.push(i+1)
-        }
-    }
+    const max = Math.max(fir, sec, thi);
 
-    return array
-}
+    if(fir === max) result.push(1);
+    if(sec === max) result.push(2);
+    if(thi === max) result.push(3);
 
-const answer = [1,3,2,4,2,1,3,2,4,2];
+    return result;
+};
 
-console.log(solution(answer))
+console.log(solution([1,2,3,4,5]));
