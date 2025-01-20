@@ -23,7 +23,7 @@ for (let i = n; i > 0; i--) {
   const m = Number(input[i]);
 
   count += parseInt(k / m);
-  k = k % m;
+  k %= m;
 }
 
 console.log(count);
